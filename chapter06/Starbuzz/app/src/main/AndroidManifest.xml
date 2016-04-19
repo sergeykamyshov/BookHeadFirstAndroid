@@ -16,7 +16,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DrinkCategoryActivity" />
+        <activity
+            android:name=".DrinkCategoryActivity"
+            android:label="@string/title_activity_drink_category" />
+        <activity
+            android:name=".DrinkActivity"
+            android:label="@string/title_activity_drink" />
     </application>
 
 </manifest>
