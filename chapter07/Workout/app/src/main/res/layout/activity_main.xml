@@ -9,8 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hfad.workout.MainActivity">
 
-    <TextView
+    <fragment
+        android:id="@+id/detail_frag"
+        class="com.hfad.workout.WorkoutDetailFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        tools:layout="@layout/fragment_workout_detail" />
 </RelativeLayout>
