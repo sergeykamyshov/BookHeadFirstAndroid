@@ -18,6 +18,14 @@ public class WorkoutListFragment extends ListFragment {
 
     private WorkoutListListener listener;
 
+    // вызывается при присоединении фрагмента к активности
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.listener = (WorkoutListListener) activity;
+    }
+
+    // вызывается когда Android требует макет фрагмента
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,14 +38,6 @@ public class WorkoutListFragment extends ListFragment {
         setListAdapter(adapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-
-    // вызывается при присоединении фрагмента к активности
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.listener = (WorkoutListListener) activity;
     }
 
     @Override

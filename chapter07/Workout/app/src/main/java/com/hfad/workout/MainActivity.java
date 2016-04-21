@@ -1,8 +1,10 @@
 package com.hfad.workout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements WorkoutListFragment.WorkoutListListener {
 
@@ -10,22 +12,25 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        WorkoutDetailFragment frag = (WorkoutDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_frag);
-//        frag.setWorkoutId(1);
     }
 
     @Override
     public void itemClicked(long id) {
-        // получаем наш фрагмент у устанавливаем ему id workout
-        WorkoutDetailFragment fragment = new WorkoutDetailFragment();
-        fragment.setWorkoutId(id);
+        View fragmentContainer = findViewById(R.id.fragment_container);
+        if (fragmentContainer != null) {
+            // получаем наш фрагмент у устанавливаем ему id workout
+            WorkoutDetailFragment fragment = new WorkoutDetailFragment();
+            fragment.setWorkoutId(id);
 
-        // выполняем замену фрагмента в транзакции
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        transaction.addToBackStack(null);
-        transaction.commit();
+            // выполняем замену фрагмента в транзакции
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(DetailActivity.EXTRA_WORKOUT_ID, (int) id);
+            startActivity(intent);
+        }
     }
 }

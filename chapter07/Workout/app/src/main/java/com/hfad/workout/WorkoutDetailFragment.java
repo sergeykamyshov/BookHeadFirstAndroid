@@ -21,6 +21,9 @@ public class WorkoutDetailFragment extends Fragment {
     // вызывает по создании фрагмента
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            workoutId = savedInstanceState.getLong("workoutId");
+        }
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
     }
 
@@ -37,6 +40,11 @@ public class WorkoutDetailFragment extends Fragment {
             titleView.setText(workout.getName());
             desciptionView.setText(workout.getDescription());
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putLong("workoutId", workoutId);
     }
 
     public void setWorkoutId(long workoutId) {
