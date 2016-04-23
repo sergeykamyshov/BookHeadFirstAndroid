@@ -3,6 +3,7 @@ package com.hfad.workout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,12 @@ public class WorkoutDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             workoutId = savedInstanceState.getLong("workoutId");
+        } else {
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            StopwatchFragment stopwatchFragment = new StopwatchFragment();
+            transaction.replace(R.id.stopwatch_container, stopwatchFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
     }
