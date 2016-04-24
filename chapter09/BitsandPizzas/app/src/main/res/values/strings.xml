@@ -5,6 +5,8 @@
     <string name="order">Order</string>
     <string name="action_share">Share</string>
     <string name="title_top">Top fragment</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 
     <string-array name="titles">
         <item>Home</item>
