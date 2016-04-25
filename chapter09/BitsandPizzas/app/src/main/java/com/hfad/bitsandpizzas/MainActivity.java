@@ -2,6 +2,7 @@ package com.hfad.bitsandpizzas;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -66,6 +67,25 @@ public class MainActivity extends Activity {
         } else {
             selectItem(0);
         }
+
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                FragmentManager fragmentManager = getFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentByTag("visible_fragment");
+                if (fragment instanceof TopFragment) {
+                    currentPosition = 0;
+                } else if (fragment instanceof PizzaFragment) {
+                    currentPosition = 1;
+                } else if (fragment instanceof PastaFragment) {
+                    currentPosition = 2;
+                } else if (fragment instanceof StoresFragment) {
+                    currentPosition = 3;
+                }
+                setActionBarTitle(currentPosition);
+                drawerList.setItemChecked(currentPosition, true);
+            }
+        });
     }
 
     @Override
@@ -128,7 +148,7 @@ public class MainActivity extends Activity {
         }
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container_frame, fragment);
+        ft.replace(R.id.container_frame, fragment, "visible_fragment");
         ft.addToBackStack(null);
         ft.commit();
     }
