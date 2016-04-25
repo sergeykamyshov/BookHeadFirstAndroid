@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,6 +28,7 @@ public class MainActivity extends Activity {
     private ListView drawerList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    private int currentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,14 @@ public class MainActivity extends Activity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         // при старте загружаем TopActivity
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt("position");
+            setActionBarTitle(currentPosition);
+        } else {
             selectItem(0);
         }
     }
@@ -81,6 +88,9 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         switch (item.getItemId()) {
             case R.id.action_create_order:
                 startActivity(new Intent(this, OrderActvity.class));
@@ -100,6 +110,7 @@ public class MainActivity extends Activity {
     }
 
     private void selectItem(int position) {
+        currentPosition = position;
         Fragment fragment;
         switch (position) {
             case 1:
@@ -138,5 +149,24 @@ public class MainActivity extends Activity {
         // если выдвижная панель открыта, то скрыть пункт "Поделиться"
         menu.findItem(R.id.action_share).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // синхронизирует состояние значка на выдвижной панели
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("position", currentPosition);
     }
 }
