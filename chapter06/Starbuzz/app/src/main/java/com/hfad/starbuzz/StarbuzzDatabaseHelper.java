@@ -1,5 +1,6 @@
 package com.hfad.starbuzz;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,10 +20,21 @@ public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
                 "NAME TEXT," +
                 "DESCRIPTION TEXT," +
                 "IMAGE_RESOUCE_ID INTEGER)");
+        insertDrink(db, "Latte", "Espresso and steamed milk", R.drawable.latte);
+        insertDrink(db, "Cappuccino", "Espresso, hot milk and steamed-milk foam", R.drawable.cappuccino);
+        insertDrink(db, "Filter", "Our best drip coffee", R.drawable.filter);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    private void insertDrink(SQLiteDatabase db, String name, String description, int resourceId) {
+        ContentValues values = new ContentValues();
+        values.put("NAME", name);
+        values.put("DESCRIPTION", description);
+        values.put("IMAGE_RESOUCE_ID", resourceId);
+        db.insert("DRINK", null, values);
     }
 }
