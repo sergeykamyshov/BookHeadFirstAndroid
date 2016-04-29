@@ -27,7 +27,7 @@ public class DrinkActivity extends AppCompatActivity {
             SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
             Cursor cursor = db.query("DRINK",
-                    new String[]{"NAME", "DESCRIPTION", "IMAGE_RESOURCE_ID"},
+                    new String[]{"NAME", "DESCRIPTION", "IMAGE_RESOUCE_ID"},
                     "_id = ?",
                     new String[]{Integer.toString(drinkNo)},
                     null, null, null);

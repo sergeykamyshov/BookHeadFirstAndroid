@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "starbuzz";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     public StarbuzzDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -24,7 +24,7 @@ public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 0) {
+        if (oldVersion < 1) {
             db.execSQL("CREATE TABLE DRINK (" +
                     "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "NAME TEXT," +
