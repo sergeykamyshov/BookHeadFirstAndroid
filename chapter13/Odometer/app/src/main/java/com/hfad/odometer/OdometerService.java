@@ -20,10 +20,9 @@ public class OdometerService extends Service {
 
     private final IBinder binder = new OdometerBinder();
 
-
     public class OdometerBinder extends Binder {
-        OdometerBinder getOdometer() {
-            return OdometerBinder.this;
+        OdometerService getOdometer() {
+            return OdometerService.this;
         }
     }
 
@@ -69,7 +68,7 @@ public class OdometerService extends Service {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
     }
 
     // вызывается при связывании службы с активностью через ServiceConnection

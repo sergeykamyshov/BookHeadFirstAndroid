@@ -10,7 +10,12 @@
     tools:context="com.hfad.odometer.MainActivity">
 
     <TextView
+        android:id="@+id/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_centerHorizontal="true"
+        android:singleLine="false"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="60dp" />
 </RelativeLayout>
