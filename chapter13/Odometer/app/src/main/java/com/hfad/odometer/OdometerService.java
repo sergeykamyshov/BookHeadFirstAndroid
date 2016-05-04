@@ -66,8 +66,10 @@ public class OdometerService extends Service {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return;
+            // return;
         }
+        // для Marshmallow и выше требуется спрашивать доступ для приложения
+        // TODO: Исправить чтобы работало
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
     }
 
