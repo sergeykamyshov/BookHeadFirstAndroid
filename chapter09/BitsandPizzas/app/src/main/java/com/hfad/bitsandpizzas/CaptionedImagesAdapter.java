@@ -34,7 +34,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
 
 //        Тут получаем OutOfMemoryError
         Drawable drawable = cardView.getResources().getDrawable(imageIds[position]);
-//        Декодирование не помогает
+//        TODO: Реализовать декодирование для обучения (убрать атрибут largeHeap из манифеста)
 //        BitmapFactory.Options options = new BitmapFactory.Options();
 //        options.inJustDecodeBounds = true;
 //        Bitmap bitmap = BitmapFactory.decodeResource(cardView.getResources(), imageIds[position], options);

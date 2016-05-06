@@ -13,6 +13,8 @@
     <string name="order">Order</string>
     <string name="action_share">Share</string>
 
+    <string name="welcome_text">We offer a range of freshly baked pizza and pasta dishes. Why not try some?</string>
+
     <string-array name="titles">
         <item>Home</item>
         <item>Pizzas</item>

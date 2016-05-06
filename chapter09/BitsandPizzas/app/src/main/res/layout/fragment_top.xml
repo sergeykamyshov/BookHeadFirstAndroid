@@ -3,10 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/welcome_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_top" />
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_text" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pizza_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_text"
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical" />
 </RelativeLayout>
