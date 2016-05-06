@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
         Fragment fragment;
         switch (position) {
             case 1:
-                fragment = new PizzaFragment();
+                fragment = new PizzaMaterialFragment();
                 break;
             case 2:
                 fragment = new PastaFragment();
